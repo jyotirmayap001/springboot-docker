@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-docker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springboot-docker
+  template:
+    metadata:
+      labels:
+        app: springboot-docker
+    spec:
+      containers:
+        - name: app
+          image: jyotirmayapati001/springboot-docker:dev.0.2-release
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
+          
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-docker
+spec:
+  selector:
+    app: springboot-docker
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer          
