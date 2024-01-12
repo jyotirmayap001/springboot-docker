@@ -28,5 +28,5 @@ spec:
     app: springboot-docker
   ports:
     - port: 80
-      targetPort: 8082
-  type: LoadBalancer          
+      targetPort: 8081
+  type: NodePort          
