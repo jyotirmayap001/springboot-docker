@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: jyotirmayapati001/springboot-docker:dev.0.2-release
+          image: jyotirmayapati001/springboot-docker:dev.0.3-release
           ports:
             - containerPort: 8081
           imagePullPolicy: IfNotPresent
