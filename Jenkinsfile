@@ -1,4 +1,4 @@
 DockerBuildAndDeploy{
 	app_name= 'springboot-docker'
-	docker_image_tag= 'dev.0.5'
+	docker_image_tag= 'dev.0.6'
 }
