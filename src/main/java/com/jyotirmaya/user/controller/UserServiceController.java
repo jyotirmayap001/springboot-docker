@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jyotirmaya.user.entity.Users;
 import com.jyotirmaya.user.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/user/")
@@ -27,6 +31,8 @@ public class UserServiceController {
 	public UserService userService;
 	
 	//Save user
+	@Operation(summary="save user information",responses= {@ApiResponse(responseCode="201", description="save user information",
+			content= { @Content(mediaType="application/json") })})
 	@PostMapping("/saveUsers")
 	public ResponseEntity<?> saveUsers(@RequestBody Users user ){
 		
@@ -35,6 +41,8 @@ public class UserServiceController {
 		 return new ResponseEntity<>(saveUser,HttpStatus.CREATED);
 	}
 	
+	@Operation(summary="save multiple user information",responses= {@ApiResponse(responseCode="201", description="save multiple user information",
+			content= { @Content(mediaType="application/json") })})
 	@PostMapping("/saveMutipleUsers")
 	public ResponseEntity<?> saveMultipleUsers(@RequestBody List<Users> user ){
 		
@@ -44,6 +52,8 @@ public class UserServiceController {
 	}
 	
 	//Get all the user details 
+	@Operation(summary="get all active users information",responses= {@ApiResponse(responseCode="200", description="get all active users information",
+			content= { @Content(mediaType="application/json") })})
 	@GetMapping("/getUsers")
 	public ResponseEntity<?> getUsers(){
 		
@@ -53,6 +63,8 @@ public class UserServiceController {
 	}
 	
 	//Get the user details by user id
+	@Operation(summary="get active user's information according to userid",responses= {@ApiResponse(responseCode="200", description="get active user's information according to userid",
+			content= { @Content(mediaType="application/json") })})
 	@GetMapping("/getUsers/{userid}")
 	public ResponseEntity<?> getUsers(@PathVariable("userid") Long userid){
 		
@@ -62,6 +74,8 @@ public class UserServiceController {
 	}
 	
 	//Get the user details by designation
+	@Operation(summary="get active user's information according to designationname",responses= {@ApiResponse(responseCode="200", description="get active user's information according to designationname",
+			content= { @Content(mediaType="application/json") })})
 	@GetMapping("/getUsersByDesignation/{designationname}")
 	public ResponseEntity<?> getUsers(@PathVariable("designationname") String designationname){
 		
@@ -71,6 +85,8 @@ public class UserServiceController {
 	}
 	
 	//Update the user details
+	@Operation(summary="update user's information according to userid",responses= {@ApiResponse(responseCode="200", description="update user's information according to userid",
+			content= { @Content(mediaType="application/json") })})
 	@PutMapping("/updateUsers/{userid}")
 	public ResponseEntity<?> updateUsers(@RequestBody Users user, @PathVariable("userid") Long userid){
 		
@@ -80,6 +96,8 @@ public class UserServiceController {
 	}
 	
 	//Delete the user
+	@Operation(summary="delete user according to userid",responses= {@ApiResponse(responseCode="200", description="delete user according to userid",
+			content= { @Content(mediaType="application/json") })})
 	@DeleteMapping("/deleteUser/{userid}")
 	public ResponseEntity<?> deleteUser(@PathVariable("userid") Long userid){
 		
