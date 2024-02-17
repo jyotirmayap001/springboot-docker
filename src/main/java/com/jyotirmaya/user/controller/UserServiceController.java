@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jyotirmaya.user.entity.Users;
@@ -105,4 +106,18 @@ public class UserServiceController {
 		 
 		 return new ResponseEntity<>("Delete successfully",HttpStatus.OK);
 	}
+	
+	//Find all users according to pageNumber, size & sorting
+	@Operation(summary="get users by paageNo, pageSize & sorting",responses= {@ApiResponse(responseCode="200", description="get users by paageNo, pageSize & sorting",
+			content= { @Content(mediaType="application/json") })})
+	@GetMapping("/getUsersByPagination")
+	public ResponseEntity<?> findAllUsersAccordingToPagination(@RequestParam("pageNo") String pageNo, @RequestParam("pageSize") String pageSize,
+																	@RequestParam("sortBy") String sortBy){
+		
+		List<Users> allUsersAccordingToPagination = userService.getAllUsersAccordingToPagination(pageNo,pageSize,sortBy);
+		
+		return new ResponseEntity<>(allUsersAccordingToPagination,HttpStatus.OK);
+		
+	}
+	
 }
